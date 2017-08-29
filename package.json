@@ -1,0 +1,12 @@
+{
+  "name": "123Contacts",
+  "version": "1.0.0",
+  "description": "Benchmark module for Learners Guild phase 1 Created using node js Implementing addContact, addContacts and printContacts functions",
+  "main": "contacts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
