@@ -30,7 +30,7 @@ const compare = (a, b) => {
  *    undefined
  */
 const addContact = (firstName, lastName, email) => {
-  contactStorage.push({first_name: firstName, lastName: lastName, email: email});
+  contactStorage.push({first_name: firstName, last_name: lastName, email: email});
   console.log('...Finished loading contact data.')
   if(contactStorage.length > 1){
     contactStorage.sort(compare)
@@ -95,7 +95,7 @@ const findMaxLengthOfColumns = (arrayOfContacts) => {
 
 
   arrayOfContacts.forEach((eachObject)=>{
-    fullNames.push(eachObject.first_name +' '+eachObject.lastName)
+    fullNames.push(eachObject.first_name +' '+eachObject.last_name)
     emailAddresses.push(eachObject.email)
   })
 
@@ -134,20 +134,17 @@ const header = (maxColumnLengths) => {
 }
 
 const fillTable = (arrayOfContactObjects, maxLengthOfColumns) => {
-  let fullName =''
-  let email =''
-
   arrayOfContactObjects.forEach((eachObject)=> {
-    fullName += eachObject.first_name +' '+eachObject.lastName
-    email += eachObject.email
+    let fullName = eachObject.first_name +' '+eachObject.last_name
+    let email = eachObject.email
+    console.log('| '+fullName+' '.repeat(maxLengthOfColumns.fullNameLength+1-fullName.length)+'| '
+    +email+' '.repeat(maxLengthOfColumns.emailAddressLength+1-email.length)+'|')
   })
-  console.log('| '+fullName+' '.repeat(maxLengthOfColumns.fullNameLength+1-fullName.length)+'| '
-  +email+' '.repeat(maxLengthOfColumns.email+1-email.length)+' |')
 }
 
 const printContacts = () => {
   console.log('Loading contact data...')
-  const maxLengthOfColumns = findMaxLengthOfColumns(contactStorage);
+  const maxLengthOfColumns = findMaxLengthOfColumns(contactStorage)
   const lastHorizontalLine = header(maxLengthOfColumns)
   fillTable(contactStorage, maxLengthOfColumns);
   console.log(lastHorizontalLine)
