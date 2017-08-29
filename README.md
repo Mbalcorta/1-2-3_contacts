@@ -5,4 +5,4 @@ Created using node js
 Implementing addContact, addContacts and printContacts functions
 
 To run script type:
-* node contacts.js
+* node ./contacts.js
