@@ -1,6 +1,20 @@
 'use strict'
-let contactStorage = [] // here is where you'll store your contacts
+// here is where you'll store your contacts
+let contactStorage = []
 
+const compare = (a, b) => {
+
+  const fullNameA = a.first_name
+  const fullNameB = b.first_name
+
+  if (fullNameA < fullNameB) {
+    return -1
+  }
+  if(fullNameA > fullNameB){
+    return 1
+  }
+  return 0
+}
 /*
  * addContact
  *
@@ -18,6 +32,9 @@ let contactStorage = [] // here is where you'll store your contacts
 const addContact = (firstName, lastName, email) => {
   contactStorage.push({first_name: firstName, lastName: lastName, email: email});
   console.log('...Finished loading contact data.')
+  if(contactStorage.length > 1){
+    contactStorage.sort(compare)
+  }
 }
 
 /*
@@ -44,11 +61,13 @@ const addContact = (firstName, lastName, email) => {
  *    undefined
  */
 
-const sortContacts = (arrayOfContacts) => {
 
-}
 
 const addContacts = (contacts) => {
+  contacts.forEach((eachObject)=> {
+    contactStorage.push(eachObject)
+  })
+  contactStorage.sort(compare);
 console.log('...Finished loading contact data.')
 }
 
@@ -81,19 +100,19 @@ const findMaxLengthOfColumns = (arrayOfContacts) => {
   })
 
 //first make function that finds max length of String
-var longestLength = (arrayList)=>{
-  return arrayList.sort((a, b) => {
-    return b.length - a.length
-  })[0].length;
-}
-const fullNameLength = longestLength(fullNames)
-const emailLength = longestLength(emailAddresses)
-
-const updateLengthsObject = (targetObjectProp, columnLength) => {
-  if(columnLengths[targetObjectProp] < columnLength) {
-    columnLengths[targetObjectProp] = columnLength
+  var longestLength = (arrayList)=>{
+    return arrayList.sort((a, b) => {
+      return b.length - a.length
+    })[0].length;
   }
-}
+  const fullNameLength = longestLength(fullNames)
+  const emailLength = longestLength(emailAddresses)
+
+  const updateLengthsObject = (targetObjectProp, columnLength) => {
+    if(columnLengths[targetObjectProp] < columnLength) {
+      columnLengths[targetObjectProp] = columnLength
+    }
+  }
 
   updateLengthsObject('fullNameLength', fullNameLength)
   updateLengthsObject('emailAddressLength', emailLength)
@@ -240,5 +259,6 @@ addContacts([
     'email': 'whixleyj@homestead.com',
   },
 ])
+
 // addContact('Betty', 'Holberton', 'betty.holberton@eniac.edu')
 printContacts()
